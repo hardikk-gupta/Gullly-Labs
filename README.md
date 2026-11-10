@@ -24,3 +24,8 @@ Then open http://localhost:8080.
 - Cart, search, login and checkout need Shopify's backend, so they don't work here.
 - Third-party app scripts (reviews, chat, analytics, payments) are removed.
 - Links to other pages still point to the live site.
+
+## Deploy on Vercel
+
+Import this repo in Vercel with Framework Preset **Other**, no build command, and output directory `./`. It's a plain static site.
+`vercel.json` sends `noindex` so search engines don't index this copy as a duplicate of the live store. Remove that header only when this becomes the official site.
