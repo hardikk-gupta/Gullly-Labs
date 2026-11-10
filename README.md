@@ -1,6 +1,7 @@
-# Gully Labs – static site copy
+# Gully Labs — website rebuild
 
-A static copy of the homepage of https://gullylabs.com (a Shopify store), used as the starting point for redesign work.
+A clean, editable rebuild of the https://gullylabs.com homepage. It is the base for the redesign, and it deploys
+to Vercel as a static site with no build step.
 
 ## Run locally
 
@@ -8,24 +9,39 @@ A static copy of the homepage of https://gullylabs.com (a Shopify store), used a
 python3 -m http.server 8080
 ```
 
-Then open http://localhost:8080.
+Then open http://localhost:8080. The page loads its content with `fetch`, so opening `index.html` straight from disk won't work.
 
-## Layout
+## Structure
 
-- `index.html` – the rendered homepage with its asset links rewritten to local files
-- `assets/theme/` – theme CSS and JS (`theme.css`, `custom.css`, `theme.js`, `swiper.js`, …)
-- `assets/images/` – every image the homepage uses (at 1500px wide)
-- `scripts/mirror.py` – the script that made the copy. Run it again to refresh it, or to copy another page:
-  `python3 scripts/mirror.py /pages/our-story our-story.html`
+| Path | What it is |
+|---|---|
+| `index.html` | Page shell (header, drawer, footer) |
+| `css/styles.css` | All styling; design tokens at the top (`--blue`, radius, spacing) |
+| `js/app.js` | Renders every section from the data and adds the motion: marquee, sliders with mouse drag, image swap on hover, quick sizes, reveal on scroll, split-word headings, parallax banners, auto-rotating testimonials |
+| `data/home.json` | **All content**: announcements, nav, banners, products, collections, looks, reviews, footer. Edit here to change copy, reorder sections or swap products |
+| `assets/img/` | Optimised WebP images used by the rebuild |
+| `original.html` + `assets/theme/`, `assets/images/` | Untouched copy of the live Shopify page, for reference |
+| `docs/REVERSE_ENGINEERING.md` | How the live site is built: theme, custom code, apps, performance |
+| `scripts/` | `mirror.py` (re-copy a live page), `extract_content.py` (copy → JSON), `optimize_images.py` (→ WebP) |
 
-## Limits
+### Refreshing content from the live site
 
-- This is the **rendered output** of the Shopify theme, not the Liquid theme source. You can only get that source from the Shopify admin (Online Store → Themes → Download theme file).
-- Cart, search, login and checkout need Shopify's backend, so they don't work here.
-- Third-party app scripts (reviews, chat, analytics, payments) are removed.
-- Links to other pages still point to the live site.
+```bash
+python3 scripts/mirror.py / original.html
+python3 scripts/extract_content.py
+python3 scripts/optimize_images.py
+```
+
+Section types in `data/home.json`: `banner`, `products`, `collections`, `lookbook`, `testimonials`, `features`.
+Reorder or delete entries in `sections` to change the page.
+
+## Commerce
+
+Product, collection, cart and account links go to the live Shopify store, so buying works end to end there.
+This site doesn't hold a cart itself.
 
 ## Deploy on Vercel
 
-Import this repo in Vercel with Framework Preset **Other**, no build command, and output directory `./`. It's a plain static site.
-`vercel.json` sends `noindex` so search engines don't index this copy as a duplicate of the live store. Remove that header only when this becomes the official site.
+Import this repo in Vercel with Framework Preset **Other**, no build command, and output directory `./`.
+`vercel.json` sends `noindex` so search engines don't index this site as a duplicate of the live store.
+Remove that header only when this becomes the official site.

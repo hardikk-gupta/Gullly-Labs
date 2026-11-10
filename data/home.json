@@ -1,0 +1,1339 @@
+{
+  "brand": {
+    "name": "Gully Labs",
+    "logo": "assets/img/image_25_9aaed497-40c5-4b63-87e3-c7e933171a81.webp",
+    "logoFooter": "assets/img/Frame_1171278318_1.webp",
+    "tagline": "Built with the community. Shared with the community. First access, always."
+  },
+  "announcements": [
+    {
+      "text": "Shop Baaz Analog Blue",
+      "url": "https://gullylabs.com/collections/baaz-analog-blue"
+    },
+    {
+      "text": "✨ Easy 30 Days Returns and Exchanges",
+      "url": "https://gullylabs.com/collections/best-sellers"
+    }
+  ],
+  "nav": [
+    {
+      "label": "Men",
+      "url": "https://gullylabs.com/collections/men"
+    },
+    {
+      "label": "Women",
+      "url": "https://gullylabs.com/collections/women"
+    },
+    {
+      "label": "Bestsellers",
+      "url": "https://gullylabs.com/collections/best-sellers"
+    },
+    {
+      "label": "Story",
+      "url": "https://gullylabs.com/pages/our-story"
+    },
+    {
+      "label": "Find a Store",
+      "url": "https://gullylabs.com/pages/find-a-store"
+    }
+  ],
+  "social": [
+    {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/gullylabs/"
+    },
+    {
+      "label": "X (Twitter)",
+      "url": "https://x.com/GullyLabs"
+    },
+    {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/gullylabs/"
+    },
+    {
+      "label": "YouTube",
+      "url": "https://www.youtube.com/@gullylabs"
+    }
+  ],
+  "sections": [
+    {
+      "type": "banner",
+      "id": "slideshow",
+      "desktop": "assets/img/Artboard_19_copy_11.webp",
+      "mobile": "assets/img/Artboard_19_copy_12.webp",
+      "alt": "",
+      "url": "https://gullylabs.com/pages/analog-blue",
+      "hero": true
+    },
+    {
+      "type": "products",
+      "id": "featured_collection_gTpLbf",
+      "title": "New Arrivals",
+      "viewAll": "https://gullylabs.com/collections/new-drops",
+      "products": [
+        {
+          "title": "Baaz Analog Blue",
+          "url": "https://gullylabs.com/pages/analog-blue",
+          "price": "₹5,990.00",
+          "compareAt": "",
+          "rating": null,
+          "badges": [
+            "NEW"
+          ],
+          "images": [
+            "assets/img/86A0964.webp",
+            "assets/img/86A0992.webp",
+            "assets/img/86A1025_2f67e6c0-ca26-49c2-b886-f7a1b31d87d0.webp",
+            "assets/img/86A1023_f92e626e-ded6-4b58-9593-f5a95bba5749.webp"
+          ],
+          "sizes": [
+            "UK 6",
+            "UK 7",
+            "UK 8",
+            "UK 9",
+            "UK 10",
+            "UK 11",
+            "UK 12"
+          ],
+          "gender": "mens"
+        },
+        {
+          "title": "Magic Carpet",
+          "url": "https://gullylabs.com/products/gully-number-001-magic-carpet",
+          "price": "₹4,490.00",
+          "compareAt": "",
+          "rating": null,
+          "badges": [
+            "NEW"
+          ],
+          "images": [
+            "assets/img/Artboard2_92a737a5-f4f1-4122-a406-041dd25a51d5.webp",
+            "assets/img/Artboard_8_a44be988-9a4c-40fd-afd9-cb9186123424.webp",
+            "assets/img/Artboard6.webp",
+            "assets/img/Artboard5_de004e84-cba6-44a5-b50e-de4caeea23ce.webp"
+          ],
+          "sizes": [
+            "UK 6",
+            "UK 7",
+            "UK 8",
+            "UK 9",
+            "UK 10",
+            "UK 11",
+            "UK 12"
+          ],
+          "gender": "mens"
+        },
+        {
+          "title": "Megh White",
+          "url": "https://gullylabs.com/products/gully-number-001-megh-white",
+          "price": "₹5,990.00",
+          "compareAt": "",
+          "rating": {
+            "score": 5.0,
+            "count": 2
+          },
+          "badges": [
+            "NEW"
+          ],
+          "images": [
+            "assets/img/86A0794.webp",
+            "assets/img/11_2_394ee174-1042-4dcf-93b3-8ea7f6a89b93.webp",
+            "assets/img/86A0847.webp",
+            "assets/img/86A0804.webp"
+          ],
+          "sizes": [
+            "UK 6",
+            "UK 7",
+            "UK 8",
+            "UK 9",
+            "UK 10",
+            "UK 11",
+            "UK 12"
+          ],
+          "gender": "mens"
+        },
+        {
+          "title": "Toggle Shacket - Olive Green",
+          "url": "https://gullylabs.com/products/kara-toggle-shacket-olive-green",
+          "price": "₹3,775.00",
+          "compareAt": "",
+          "rating": {
+            "score": 4.5,
+            "count": 2
+          },
+          "badges": [
+            "NEW"
+          ],
+          "images": [
+            "assets/img/86A0294.webp",
+            "assets/img/image160.webp",
+            "assets/img/86A0740-2.webp",
+            "assets/img/image_143_5b2898e5-3cc4-4d66-9a60-04b977d7efbb.webp"
+          ],
+          "sizes": [
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL"
+          ],
+          "gender": "unisex"
+        },
+        {
+          "title": "Pleat Trousers - Navy",
+          "url": "https://gullylabs.com/products/kara-pleat-trouser-navy",
+          "price": "₹3,290.00",
+          "compareAt": "",
+          "rating": null,
+          "badges": [
+            "NEW"
+          ],
+          "images": [
+            "assets/img/6_5.webp",
+            "assets/img/3copy_1.webp",
+            "assets/img/5copy_1.webp",
+            "assets/img/1copy_1.webp"
+          ],
+          "sizes": [
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL"
+          ],
+          "gender": "mens"
+        },
+        {
+          "title": "Pleat Trouser - Dark Brown",
+          "url": "https://gullylabs.com/products/kara-pleat-trouser-dark-brown",
+          "price": "₹3,290.00",
+          "compareAt": "",
+          "rating": null,
+          "badges": [
+            "NEW"
+          ],
+          "images": [
+            "assets/img/6_7.webp",
+            "assets/img/3copy_2.webp",
+            "assets/img/1copy_2.webp",
+            "assets/img/5copy_2.webp"
+          ],
+          "sizes": [
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL"
+          ],
+          "gender": "mens"
+        },
+        {
+          "title": "Deconstructed Shirt - Powder Blue",
+          "url": "https://gullylabs.com/products/kara-deconstructed-shirt-powder-blue",
+          "price": "₹2,499.00",
+          "compareAt": "",
+          "rating": null,
+          "badges": [
+            "NEW"
+          ],
+          "images": [
+            "assets/img/image_119.webp",
+            "assets/img/86A0005.webp",
+            "assets/img/86A0004.webp",
+            "assets/img/86A0002.webp"
+          ],
+          "sizes": [
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL"
+          ],
+          "gender": "mens"
+        },
+        {
+          "title": "Utility Shacket - Black",
+          "url": "https://gullylabs.com/products/kara-utility-shacket-black",
+          "price": "₹3,775.00",
+          "compareAt": "",
+          "rating": null,
+          "badges": [
+            "NEW"
+          ],
+          "images": [
+            "assets/img/07_549edd8a-1de9-478d-92b2-b281c49507c3.webp",
+            "assets/img/08_0f32855b-1123-49c2-b77d-609b89bfc4ca.webp",
+            "assets/img/06_ef33de78-bdb5-4c58-b4dc-e253c853eb63.webp",
+            "assets/img/010.webp"
+          ],
+          "sizes": [
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL"
+          ],
+          "gender": "unisex"
+        },
+        {
+          "title": "Toggle Shacket - Navy",
+          "url": "https://gullylabs.com/products/kara-toggle-shacket-navy",
+          "price": "₹3,775.00",
+          "compareAt": "",
+          "rating": {
+            "score": 4.5,
+            "count": 2
+          },
+          "badges": [
+            "NEW"
+          ],
+          "images": [
+            "assets/img/86A9918.webp",
+            "assets/img/simple-other-1792049288259-6aclv.webp",
+            "assets/img/86A0537.webp",
+            "assets/img/image_145_faa3aa36-2c9d-4aeb-a889-0de3731750f4.webp"
+          ],
+          "sizes": [
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL"
+          ],
+          "gender": "unisex"
+        },
+        {
+          "title": "Deconstructed Shirt - Black",
+          "url": "https://gullylabs.com/products/kara-deconstructed-shirt-black",
+          "price": "₹2,499.00",
+          "compareAt": "",
+          "rating": null,
+          "badges": [
+            "NEW"
+          ],
+          "images": [
+            "assets/img/image_11.webp",
+            "assets/img/86A9966.webp",
+            "assets/img/86A9975.webp",
+            "assets/img/86A9974.webp"
+          ],
+          "sizes": [
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL"
+          ],
+          "gender": "mens"
+        }
+      ]
+    },
+    {
+      "type": "products",
+      "id": "featured-collections",
+      "title": "Bestsellers",
+      "viewAll": "https://gullylabs.com/collections/bestsellers-sneakers",
+      "products": [
+        {
+          "title": "Aandhi Kobicha",
+          "url": "https://gullylabs.com/products/raga-shoe-m",
+          "price": "₹5,990.00",
+          "compareAt": "",
+          "rating": {
+            "score": 4.8,
+            "count": 27
+          },
+          "badges": [
+            "Bestseller"
+          ],
+          "images": [
+            "assets/img/DSC08304_a39268ef-de55-4793-801d-6d6634d28192.webp",
+            "assets/img/13_1_ea671fa2-c99a-416b-9958-ebbb4bb6f20a.webp",
+            "assets/img/4_1_de164060-96f4-43ea-80a8-bfe2ee54677f.webp",
+            "assets/img/DSC08310_88ac0f94-f987-4421-8ef2-1c20438a99eb.webp"
+          ],
+          "sizes": [
+            "UK 6",
+            "UK 7",
+            "UK 8",
+            "UK 9",
+            "UK 10",
+            "UK 11",
+            "UK 12"
+          ],
+          "gender": "mens"
+        },
+        {
+          "title": "Baaz Indrani",
+          "url": "https://gullylabs.com/products/gully-number-001-baaz-indrani-edition-men",
+          "price": "₹5,990.00",
+          "compareAt": "",
+          "rating": {
+            "score": 5.0,
+            "count": 4
+          },
+          "badges": [
+            "Bestseller"
+          ],
+          "images": [
+            "assets/img/1_2_0bf70c0f-7657-4067-97b3-cacf342c189c.webp",
+            "assets/img/12_1_1.webp",
+            "assets/img/2_1_a4957a7a-89b8-4764-a89e-7d62b1e5742d.webp",
+            "assets/img/7_1.webp"
+          ],
+          "sizes": [
+            "UK 6",
+            "UK 7",
+            "UK 8",
+            "UK 9",
+            "UK 10",
+            "UK 11",
+            "UK 12"
+          ],
+          "gender": "mens"
+        },
+        {
+          "title": "Dvaita Calico White",
+          "url": "https://gullylabs.com/products/gully-number-001-dvaita-calico-white-men",
+          "price": "₹5,990.00",
+          "compareAt": "",
+          "rating": {
+            "score": 4.7,
+            "count": 18
+          },
+          "badges": [],
+          "images": [
+            "assets/img/1_5694262a-1c24-4cde-8f8c-8ad41050b7b3.webp",
+            "assets/img/12_5f6a500a-9fe7-4ce8-a3f7-1136b24735fa.webp",
+            "assets/img/2_5789b544-92ac-4775-a57c-7594ae0e43f7.webp",
+            "assets/img/8_afb0aa12-b8e9-4e2f-8cc7-e9aecd239cec.webp"
+          ],
+          "sizes": [
+            "UK 6",
+            "UK 7",
+            "UK 8",
+            "UK 9",
+            "UK 10",
+            "UK 11",
+            "UK 12"
+          ],
+          "gender": "mens"
+        },
+        {
+          "title": "Buransh Red",
+          "url": "https://gullylabs.com/products/gl001-buransh-red",
+          "price": "₹5,990.00",
+          "compareAt": "",
+          "rating": {
+            "score": 5.0,
+            "count": 13
+          },
+          "badges": [
+            "Bestseller"
+          ],
+          "images": [
+            "assets/img/1_1c3fc523-c057-46cb-ad3f-17b25937b95e.webp",
+            "assets/img/11_7f499631-c31e-4b0b-83bd-db04f80f9fbd.webp",
+            "assets/img/2_0bc64a03-b4e0-4d72-bbf9-e3f5a1ad82b7.webp",
+            "assets/img/7_5f7338e1-815d-4885-bf90-98b378feb157.webp"
+          ],
+          "sizes": [
+            "UK 6",
+            "UK 7",
+            "UK 8",
+            "UK 9",
+            "UK 10",
+            "UK 11",
+            "UK 12"
+          ],
+          "gender": "mens"
+        },
+        {
+          "title": "Baaz Noor Yellow",
+          "url": "https://gullylabs.com/products/gully-number-001-baaz-noor-yellow-men",
+          "price": "₹4,290.00",
+          "compareAt": "",
+          "rating": {
+            "score": 4.8,
+            "count": 27
+          },
+          "badges": [
+            "Bestseller"
+          ],
+          "images": [
+            "assets/img/DSC09966_643c62b9-cd21-4b43-a944-61581e2a6a65.webp",
+            "assets/img/11_2_2.webp",
+            "assets/img/dd.webp",
+            "assets/img/DSC09967_89fcb9e6-c9f6-4d0e-a634-c5ba7c19c979.webp"
+          ],
+          "sizes": [
+            "UK 6",
+            "UK 7",
+            "UK 8",
+            "UK 9",
+            "UK 10",
+            "UK 11",
+            "UK 12"
+          ],
+          "gender": "mens"
+        },
+        {
+          "title": "Barfi Burgundy for Women",
+          "url": "https://gullylabs.com/products/gully-number-001-barfi-burgundy-women",
+          "price": "₹5,990.00",
+          "compareAt": "",
+          "rating": {
+            "score": 4.9,
+            "count": 21
+          },
+          "badges": [
+            "Bestseller"
+          ],
+          "images": [
+            "assets/img/1_ba88f68d-cc7c-495b-9afe-19f7fb379b65.webp",
+            "assets/img/13_a07ed19b-c4b6-478c-add2-89bfb2224aff.webp",
+            "assets/img/2_1_4ad31e71-714d-4a7c-a2f5-16cc6ac0baf1.webp",
+            "assets/img/6_ae038530-7de2-4b12-b5f6-2ddca63b95f6.webp"
+          ],
+          "sizes": [
+            "UK 3",
+            "UK 4",
+            "UK 5",
+            "UK 6",
+            "UK 7",
+            "UK 8"
+          ],
+          "gender": "womens"
+        }
+      ],
+      "tabs": [
+        "Sneakers",
+        "Slides",
+        "Apparel",
+        "Accessories"
+      ]
+    },
+    {
+      "type": "banner",
+      "id": "slideshow_LbG7H8",
+      "desktop": "assets/img/Desktop_ae7039cf-72cf-4dc5-9b18-aa26cb6d32ce.webp",
+      "mobile": "assets/img/Mobile_d962b9ba-34a0-4970-82eb-4c607a61ed61.webp",
+      "alt": "",
+      "url": "https://gullylabs.com/collections/gully-number-004"
+    },
+    {
+      "type": "products",
+      "id": "featured_collection_PfRqyY",
+      "title": "Gully Number 004",
+      "viewAll": "https://gullylabs.com/collections/gully-number-004",
+      "products": [
+        {
+          "title": "Koyar Black",
+          "url": "https://gullylabs.com/products/gully-number-004-koyar-black",
+          "price": "₹2,700.00",
+          "compareAt": "₹3,790.00",
+          "rating": {
+            "score": 4.5,
+            "count": 2
+          },
+          "badges": [
+            "Bestseller"
+          ],
+          "images": [
+            "assets/img/GLApril0057-2.webp",
+            "assets/img/GLApril0296-2.webp",
+            "assets/img/GLApril0203-2.webp",
+            "assets/img/GLApril0135-2.webp"
+          ],
+          "sizes": [
+            "UK 6",
+            "UK 7",
+            "UK 8",
+            "UK 9",
+            "UK 10",
+            "UK 11",
+            "UK 12"
+          ],
+          "gender": "mens"
+        },
+        {
+          "title": "Suva Green",
+          "url": "https://gullylabs.com/products/gully-number-004-suva-green",
+          "price": "₹3,790.00",
+          "compareAt": "",
+          "rating": {
+            "score": 5.0,
+            "count": 1
+          },
+          "badges": [
+            "Bestseller"
+          ],
+          "images": [
+            "assets/img/GL_April0045-2.webp",
+            "assets/img/GL_April0158-2.webp",
+            "assets/img/GL_April0199-2.webp",
+            "assets/img/GL_April0133-2.webp"
+          ],
+          "sizes": [
+            "UK 6",
+            "UK 7",
+            "UK 8",
+            "UK 9",
+            "UK 10",
+            "UK 11",
+            "UK 12"
+          ],
+          "gender": "mens"
+        },
+        {
+          "title": "Saaya Blue",
+          "url": "https://gullylabs.com/products/gully-number-004-saaya-blue",
+          "price": "₹3,790.00",
+          "compareAt": "",
+          "rating": {
+            "score": 4.3,
+            "count": 4
+          },
+          "badges": [],
+          "images": [
+            "assets/img/GLApril0047-2_5b923c45-79fd-4ff5-a15a-c51ee1dc8689.webp",
+            "assets/img/GL_April0293-2.webp",
+            "assets/img/GL_April0200-2.webp",
+            "assets/img/GL_April0142-2.webp"
+          ],
+          "sizes": [
+            "UK 6",
+            "UK 7",
+            "UK 8",
+            "UK 9",
+            "UK 10",
+            "UK 11",
+            "UK 12"
+          ],
+          "gender": "mens"
+        },
+        {
+          "title": "Sebal Black for Women",
+          "url": "https://gullylabs.com/products/gully-number-004-sebal-black-for-women",
+          "price": "₹3,790.00",
+          "compareAt": "",
+          "rating": {
+            "score": 4.7,
+            "count": 3
+          },
+          "badges": [],
+          "images": [
+            "assets/img/1_5720f8b0-5314-4292-82c2-b2757e608175.webp",
+            "assets/img/12_7fad6acf-3919-4a5a-b890-7212da1e7f41.webp",
+            "assets/img/2_87947803-c2a7-449e-90c4-ff458bd7c27b.webp",
+            "assets/img/5_56eba9fa-7c58-47e2-8b6c-ef672d25ad92.webp"
+          ],
+          "sizes": [
+            "UK 3",
+            "UK 4",
+            "UK 5",
+            "UK 6",
+            "UK 7",
+            "UK 8"
+          ],
+          "gender": "womens"
+        },
+        {
+          "title": "Sal Brown for Women",
+          "url": "https://gullylabs.com/products/gully-number-004-sal-brown-for-women",
+          "price": "₹3,790.00",
+          "compareAt": "",
+          "rating": {
+            "score": 5.0,
+            "count": 1
+          },
+          "badges": [],
+          "images": [
+            "assets/img/1_86e05a0e-648d-45fa-9c7d-83a5aeac1ad5.webp",
+            "assets/img/13_3.webp",
+            "assets/img/3_1_fb23efdf-79d1-42f8-bb09-c6851cd32a76.webp",
+            "assets/img/3_6f355d40-0596-41b4-848f-7a1f407e2a45.webp"
+          ],
+          "sizes": [
+            "UK 3",
+            "UK 4",
+            "UK 5",
+            "UK 6",
+            "UK 7",
+            "UK 8"
+          ],
+          "gender": "womens"
+        },
+        {
+          "title": "Koyar Black For Women",
+          "url": "https://gullylabs.com/products/gully-number-004-koyar-black-for-women",
+          "price": "₹2,700.00",
+          "compareAt": "₹3,790.00",
+          "rating": null,
+          "badges": [],
+          "images": [
+            "assets/img/GLApril0057-2.webp",
+            "assets/img/GLApril0296-2.webp",
+            "assets/img/GLApril0203-2.webp",
+            "assets/img/GLApril0135-2.webp"
+          ],
+          "sizes": [
+            "UK 3",
+            "UK 4",
+            "UK 5",
+            "UK 6",
+            "UK 7",
+            "UK 8"
+          ],
+          "gender": "womens"
+        },
+        {
+          "title": "Saaya Blue For Women",
+          "url": "https://gullylabs.com/products/gully-number-004-saaya-blue-for-women",
+          "price": "₹3,790.00",
+          "compareAt": "",
+          "rating": {
+            "score": 5.0,
+            "count": 2
+          },
+          "badges": [],
+          "images": [
+            "assets/img/GLApril0047-2_5b923c45-79fd-4ff5-a15a-c51ee1dc8689.webp",
+            "assets/img/GL_April0166-2.webp",
+            "assets/img/GL_April0200-2.webp",
+            "assets/img/GL_April0142-2.webp"
+          ],
+          "sizes": [
+            "UK 5",
+            "UK 6",
+            "UK 7",
+            "UK 8",
+            "UK 3",
+            "UK 4"
+          ],
+          "gender": "womens"
+        },
+        {
+          "title": "Sebal Black",
+          "url": "https://gullylabs.com/products/gully-number-004-sebal-black",
+          "price": "₹3,790.00",
+          "compareAt": "",
+          "rating": {
+            "score": 4.7,
+            "count": 6
+          },
+          "badges": [],
+          "images": [
+            "assets/img/1_d7196866-215d-4856-9ac0-123c8a119c52.webp",
+            "assets/img/10_1_d059c525-f7b4-47be-aefb-9c026054bad4.webp",
+            "assets/img/2_fe0c345a-56f3-492b-a62a-a1f5da4619a7.webp",
+            "assets/img/8855_e21111f2-9bd4-4732-9502-0f4e8c812ba8.webp"
+          ],
+          "sizes": [
+            "UK 6",
+            "UK 7",
+            "UK 8",
+            "UK 9",
+            "UK 10",
+            "UK 11",
+            "UK 12"
+          ],
+          "gender": "mens"
+        },
+        {
+          "title": "Suva Green For Women",
+          "url": "https://gullylabs.com/products/gully-number-004-suva-green-for-women",
+          "price": "₹3,790.00",
+          "compareAt": "",
+          "rating": null,
+          "badges": [],
+          "images": [
+            "assets/img/GL_April0045-2.webp",
+            "assets/img/GL_April0158-2.webp",
+            "assets/img/GL_April0199-2.webp",
+            "assets/img/GL_April0133-2.webp"
+          ],
+          "sizes": [
+            "UK 3",
+            "UK 4",
+            "UK 5",
+            "UK 6",
+            "UK 7",
+            "UK 8"
+          ],
+          "gender": "womens"
+        },
+        {
+          "title": "Sal Brown",
+          "url": "https://gullylabs.com/products/gully-number-004-sal-brown",
+          "price": "₹3,790.00",
+          "compareAt": "",
+          "rating": {
+            "score": 4.9,
+            "count": 14
+          },
+          "badges": [
+            "Bestseller"
+          ],
+          "images": [
+            "assets/img/1_cd47a9c3-7ba4-4029-8e4a-3ee77c982c03.webp",
+            "assets/img/13_2_d8bc5452-0581-408a-aab3-ddf37649aaa8.webp",
+            "assets/img/8_509b4234-26c1-4f38-8b38-ae26b0754a1f.webp",
+            "assets/img/9-5_84d29272-a61c-461f-b65c-f033ad70b58b.webp"
+          ],
+          "sizes": [
+            "UK 6",
+            "UK 7",
+            "UK 8",
+            "UK 9",
+            "UK 10",
+            "UK 11",
+            "UK 12"
+          ],
+          "gender": "mens"
+        }
+      ]
+    },
+    {
+      "type": "banner",
+      "id": "slideshow_UEUK8X",
+      "desktop": "assets/img/1_2782a766-6fc2-4335-a98f-6fd4235d0e33.webp",
+      "mobile": "assets/img/02_5e0e0256-5a5f-4333-91f8-9cdc4fe37a20.webp",
+      "alt": "",
+      "url": "https://gullylabs.com/collections/hidden-gems"
+    },
+    {
+      "type": "products",
+      "id": "featured_collection_8eyafi",
+      "title": "Hidden Gems",
+      "viewAll": "https://gullylabs.com/collections/hidden-gems",
+      "products": [
+        {
+          "title": "Gully Number 001 - Baaz Baadal Blue",
+          "url": "https://gullylabs.com/products/gully-number-001-baaz-baadal-blue",
+          "price": "₹4,290.00",
+          "compareAt": "",
+          "rating": {
+            "score": 4.4,
+            "count": 7
+          },
+          "badges": [],
+          "images": [
+            "assets/img/3_4.webp",
+            "assets/img/5_3.webp",
+            "assets/img/DSC00721_18f58f69-d253-45c7-90d5-d47d77627a4a.webp",
+            "assets/img/6_cb17acd8-06f1-41bb-b2b7-7d533c56ab1a.webp"
+          ],
+          "sizes": [],
+          "gender": "mens"
+        },
+        {
+          "title": "GULLY NUMBER 001 - Baaz Kopal Green",
+          "url": "https://gullylabs.com/products/gully-number-001-baaz-jasta-green",
+          "price": "₹4,490.00",
+          "compareAt": "",
+          "rating": {
+            "score": 4.7,
+            "count": 13
+          },
+          "badges": [
+            "Bestseller"
+          ],
+          "images": [
+            "assets/img/m2.webp",
+            "assets/img/13_46e59c6f-401e-40f6-a19a-fa7609a124da.webp",
+            "assets/img/kopalmw.webp",
+            "assets/img/Baaz1276.webp"
+          ],
+          "sizes": [
+            "UK 6",
+            "UK 7",
+            "UK 8",
+            "UK 9",
+            "UK 10",
+            "UK 11",
+            "UK 12"
+          ],
+          "gender": "mens"
+        },
+        {
+          "title": "Gully Number 001 - Baaz Firozi Green",
+          "url": "https://gullylabs.com/products/gully-number-001-baaz-firozi-green-men",
+          "price": "₹4,290.00",
+          "compareAt": "",
+          "rating": {
+            "score": 4.9,
+            "count": 17
+          },
+          "badges": [],
+          "images": [
+            "assets/img/1copy.webp",
+            "assets/img/10_copy.webp",
+            "assets/img/2_copy.webp",
+            "assets/img/3_copy.webp"
+          ],
+          "sizes": [
+            "UK 6",
+            "UK 7",
+            "UK 8",
+            "UK 9",
+            "UK 10",
+            "UK 11",
+            "UK 12"
+          ],
+          "gender": "mens"
+        },
+        {
+          "title": "Gully Number 001 - Baaz Kora White",
+          "url": "https://gullylabs.com/products/gully-number-001-baaz-kora-white",
+          "price": "₹4,290.00",
+          "compareAt": "",
+          "rating": {
+            "score": 4.7,
+            "count": 6
+          },
+          "badges": [],
+          "images": [
+            "assets/img/4_6.webp",
+            "assets/img/12_7.webp",
+            "assets/img/2_88f583d8-72fb-4c8c-8038-7b6e40022e61.webp",
+            "assets/img/5_a767f506-465a-4901-abec-fc5bf929ccab.webp"
+          ],
+          "sizes": [
+            "UK 6",
+            "UK 7",
+            "UK 8",
+            "UK 9",
+            "UK 10",
+            "UK 11",
+            "UK 12"
+          ],
+          "gender": "mens"
+        },
+        {
+          "title": "Gully Number 001 - Baaz Leila Navy for Women",
+          "url": "https://gullylabs.com/products/gully-number-001-baaz-leila-navy-women",
+          "price": "₹4,290.00",
+          "compareAt": "",
+          "rating": {
+            "score": 4.8,
+            "count": 11
+          },
+          "badges": [
+            "Bestseller"
+          ],
+          "images": [
+            "assets/img/1_d98b93b8-74a8-45d5-8018-af384c715935.webp",
+            "assets/img/13_c6374274-226a-431b-a63e-574d9a86191d.webp",
+            "assets/img/2_1_d178214e-2534-46bc-b1ba-a122d7c696be.webp",
+            "assets/img/7_447e68bd-0ef9-4da1-9131-2513891631d6.webp"
+          ],
+          "sizes": [
+            "UK 3",
+            "UK 4",
+            "UK 5",
+            "UK 6",
+            "UK 7",
+            "UK 8"
+          ],
+          "gender": "womens"
+        },
+        {
+          "title": "Gully Number 001 - Saaj Orange for Women",
+          "url": "https://gullylabs.com/products/gully-number-001-saaj-orange-women",
+          "price": "₹8,990.00",
+          "compareAt": "",
+          "rating": null,
+          "badges": [],
+          "images": [
+            "assets/img/xxx2.webp",
+            "assets/img/xxx3.webp",
+            "assets/img/b_2c47d865-7b66-41e1-adce-671a24347b91.webp",
+            "assets/img/2q.webp"
+          ],
+          "sizes": [
+            "UK 3",
+            "UK 4",
+            "UK 5",
+            "UK 6",
+            "UK 7",
+            "UK 8"
+          ],
+          "gender": "womens"
+        },
+        {
+          "title": "Kara - Pintuck Pant - Black For Men",
+          "url": "https://gullylabs.com/products/kara-pintuck-pant-black",
+          "price": "₹2,995.00",
+          "compareAt": "",
+          "rating": null,
+          "badges": [
+            "NEW"
+          ],
+          "images": [
+            "assets/img/PintuckBlack_Male_02.webp",
+            "assets/img/PintuckBlack_Male_05.webp",
+            "assets/img/PintuckBlack_Male_06.webp",
+            "assets/img/PintuckBlack_Male_04.webp"
+          ],
+          "sizes": [
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL"
+          ],
+          "gender": "mens"
+        },
+        {
+          "title": "Kara - Utility Shacket - Dark Brown (Unisex)",
+          "url": "https://gullylabs.com/products/kara-utility-shacket-dark-brown",
+          "price": "₹3,775.00",
+          "compareAt": "",
+          "rating": null,
+          "badges": [
+            "NEW"
+          ],
+          "images": [
+            "assets/img/09_96ce5e32-60f8-4b7f-9214-d24947b45f2d.webp",
+            "assets/img/011.webp",
+            "assets/img/01_604edf06-c2e5-4759-9739-c2eef4afd4ae.webp",
+            "assets/img/06_f9cddf74-63eb-418b-b2fd-888082ab13eb.webp"
+          ],
+          "sizes": [
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL"
+          ],
+          "gender": "unisex"
+        }
+      ]
+    },
+    {
+      "type": "collections",
+      "id": "collection_list_JRGJy4",
+      "title": "APPAREL",
+      "items": [
+        {
+          "title": "Shackets",
+          "count": 6,
+          "subtitle": "",
+          "image": "assets/img/Asset_3.webp",
+          "url": "https://gullylabs.com/collections/shackets"
+        },
+        {
+          "title": "Jerseys",
+          "count": 12,
+          "subtitle": "",
+          "image": "assets/img/Asset_1_ec4aa644-f793-4e73-92b4-ae62b7c80da6.webp",
+          "url": "https://gullylabs.com/collections/jerseys"
+        },
+        {
+          "title": "Shirts",
+          "count": 12,
+          "subtitle": "",
+          "image": "assets/img/Asset_4_e7178e08-827f-4cff-9b63-6affabcdc233.webp",
+          "url": "https://gullylabs.com/collections/shirts"
+        },
+        {
+          "title": "Trousers",
+          "count": 13,
+          "subtitle": "",
+          "image": "assets/img/Asset_2_9604ec0f-23f3-447f-964f-7eede465e75c.webp",
+          "url": "https://gullylabs.com/collections/trousers"
+        }
+      ]
+    },
+    {
+      "type": "lookbook",
+      "id": "image_point_Gr46M6",
+      "title": "Shop The Look",
+      "looks": [
+        {
+          "image": "assets/img/DSF0009_copy.webp",
+          "products": [
+            {
+              "title": "Gully 17 Jersey - Gati Beige (Crew Neck)",
+              "url": "https://gullylabs.com/products/gully-17-jersey-gati-beige-crew-neck",
+              "image": "assets/img/DSF0021.webp",
+              "price": "₹1,990.00"
+            },
+            {
+              "title": "Gully 17 Trousers - Josh Black",
+              "url": "https://gullylabs.com/products/gully-17-trousers-josh-black",
+              "image": "assets/img/086A0114.webp",
+              "price": "₹2,990.00"
+            },
+            {
+              "title": "Gully Number 002 – Gati Beige",
+              "url": "https://gullylabs.com/products/gully-number-002-gati-beige",
+              "image": "assets/img/gati_beige.webp",
+              "price": "₹3,600.00"
+            }
+          ]
+        },
+        {
+          "image": "assets/img/DSF0106_copy_1.webp",
+          "products": [
+            {
+              "title": "Gully 17 Jersey - Gati Beige (Polo Neck)",
+              "url": "https://gullylabs.com/products/gully-17-jersey-gati-beige-polo-neck",
+              "image": "assets/img/DSF0379-1.webp",
+              "price": "₹1,990.00"
+            },
+            {
+              "title": "Gully 17 Trousers - Aaroh Brown",
+              "url": "https://gullylabs.com/products/gully-17-trousers-aaroh-brown",
+              "image": "assets/img/086A0047.webp",
+              "price": "₹2,990.00"
+            },
+            {
+              "title": "Gully Number 002 – Tezz Green For Women",
+              "url": "https://gullylabs.com/products/gully-number-002-tezz-green-for-women",
+              "image": "assets/img/086A0161_7509a4fb-874c-4398-a6a3-3abccd979c64.webp",
+              "price": "₹4,490.00"
+            }
+          ]
+        },
+        {
+          "image": "assets/img/DSF0318_copy.webp",
+          "products": [
+            {
+              "title": "Gully 17 Jersey - Tezz Green (Crew Neck)",
+              "url": "https://gullylabs.com/products/gully-17-jersey-tezz-green-crew-neck",
+              "image": "assets/img/DSF0084.webp",
+              "price": "₹1,990.00"
+            }
+          ]
+        },
+        {
+          "image": "assets/img/DSF0717_copy_1.webp",
+          "products": [
+            {
+              "title": "Gully 17 Jersey - Udaan Blue (Crew Neck)",
+              "url": "https://gullylabs.com/products/gully-17-jersey-udaan-blue-crew-neck",
+              "image": "assets/img/DSF0211.webp",
+              "price": "₹1,990.00"
+            },
+            {
+              "title": "Gully 17 Jersey - Udaan Blue (Polo Neck)",
+              "url": "https://gullylabs.com/products/gully-17-jersey-udaan-blue-polo-neck",
+              "image": "assets/img/DSF0040.webp",
+              "price": "₹1,990.00"
+            }
+          ]
+        },
+        {
+          "image": "assets/img/DSF0024_copy_24c0e8b7-7822-4945-a9bb-dfd1543247a6.webp",
+          "products": [
+            {
+              "title": "Gully 17 Jersey - Udaan Blue (Crew Neck)",
+              "url": "https://gullylabs.com/products/gully-17-jersey-udaan-blue-crew-neck",
+              "image": "assets/img/DSF0211.webp",
+              "price": "₹1,990.00"
+            },
+            {
+              "title": "Gully Number 002 – Udaan Blue",
+              "url": "https://gullylabs.com/products/gully-number-005-udaan-blue",
+              "image": "assets/img/Asset_1.webp",
+              "price": "₹5,490.00"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "collections",
+      "id": "collection-list",
+      "title": "SHOP BY COLLECTION",
+      "items": [
+        {
+          "title": "All products",
+          "count": 181,
+          "subtitle": "Check out all our products",
+          "image": "assets/img/Sneaker_Trends_for_Women_in_India_2026.webp",
+          "url": "https://gullylabs.com/collections/all-collections"
+        },
+        {
+          "title": "Baaz",
+          "count": 26,
+          "subtitle": "The Daily Beater",
+          "image": "assets/img/Baaz2023_1_1.webp",
+          "url": "https://gullylabs.com/collections/baaz-y2k"
+        },
+        {
+          "title": "Karwaan",
+          "count": 6,
+          "subtitle": "For the Community",
+          "image": "assets/img/Asset_24.webp",
+          "url": "https://gullylabs.com/collections/karwaan"
+        },
+        {
+          "title": "Special Editions",
+          "count": 12,
+          "subtitle": "Inspired Designs",
+          "image": "assets/img/Asset_49.webp",
+          "url": "https://gullylabs.com/collections/special-editions"
+        },
+        {
+          "title": "Dvaita",
+          "count": 4,
+          "subtitle": "Representing the Duality of India",
+          "image": "assets/img/Asset_4.webp",
+          "url": "https://gullylabs.com/collections/dvaita-representing-duality-of-india"
+        },
+        {
+          "title": "Chappal",
+          "count": 12,
+          "subtitle": "GL Slides",
+          "image": "assets/img/Asset_21.webp",
+          "url": "https://gullylabs.com/collections/gully-number-004"
+        },
+        {
+          "title": "GL002",
+          "count": 20,
+          "subtitle": "The Trainer",
+          "image": "assets/img/Asset_12.webp",
+          "url": "https://gullylabs.com/collections/gully-number-002-the-vintage-trainers"
+        },
+        {
+          "title": "GL003",
+          "count": 14,
+          "subtitle": "Timeless Style, Crafted for Every Step",
+          "image": "assets/img/Asset_53.webp",
+          "url": "https://gullylabs.com/collections/gully-number-003"
+        },
+        {
+          "title": "Kulfi Collection",
+          "count": 8,
+          "subtitle": "India’s Favourite Summer-Inspired Sneakers",
+          "image": "assets/img/Asset_20.webp",
+          "url": "https://gullylabs.com/collections/kulfi-tribute-to-india-s-favourite-summer-treat"
+        },
+        {
+          "title": "Gully Labs X Nivia",
+          "count": 6,
+          "subtitle": "Where sport meets fashion",
+          "image": "assets/img/Asset_30.webp",
+          "url": "https://gullylabs.com/collections/gully-labs-x-nivia"
+        }
+      ]
+    },
+    {
+      "type": "testimonials",
+      "id": "testimonials-banner",
+      "items": [
+        {
+          "quote": "It’s fitting right, it’s comfortable. And service is amazing. People responded to query and provided necessary help.",
+          "author": "Aditya Ghanshyam Chavan"
+        },
+        {
+          "quote": "Look Amazing! The fabric feels premium and the pairs fits perfect. Received the package in good condition and the packaging was also really good hence the unboxing experience was also great! I would definitely come back to cop some other pair 👍",
+          "author": "Suhas Acharya"
+        },
+        {
+          "quote": "I love the shoe , I loved how everything is in detail and perfectly stitched and also thankyou so much delivery it much more before the actual date , as per demanded delivery date .",
+          "author": "Aditya Khattar"
+        },
+        {
+          "quote": "A great shoe and instant shipping, loved the handmade work by gullylabs",
+          "author": "Aditya Wani"
+        },
+        {
+          "quote": "It's fire 🔥. Love it.",
+          "author": "Kafka"
+        },
+        {
+          "quote": "Beautiful pair! The attention to detail is amazing and great quality. Wearing this actually feels meaningful!",
+          "author": "Ojasvi Hallikhede"
+        },
+        {
+          "quote": "Best shoes I've ever had. I love them so much that I put them on my head.",
+          "author": "Bhavesh Garg"
+        }
+      ]
+    },
+    {
+      "type": "features",
+      "id": "multicolumn_with_icons_txUcKa",
+      "items": [
+        {
+          "title": "Global Shipping",
+          "text": "Shipping to the US, UK and many more"
+        },
+        {
+          "title": "Next Day Dispatch",
+          "text": "Dispatch within 24 hours of order"
+        },
+        {
+          "title": "Returns and Exchanges",
+          "text": "Easy 30 days Returns and Exchanges"
+        },
+        {
+          "title": "Cash on Delivery",
+          "text": "Opt for COD among other payment methods"
+        }
+      ]
+    }
+  ],
+  "footer": {
+    "columns": [
+      {
+        "title": "Shop",
+        "links": [
+          {
+            "label": "Shop All",
+            "url": "https://gullylabs.com/collections/all-collections"
+          },
+          {
+            "label": "Bestsellers",
+            "url": "https://gullylabs.com/collections/best-sellers"
+          },
+          {
+            "label": "Shoes Under ₹5000",
+            "url": "https://gullylabs.com/collections/shoe-under-5000"
+          },
+          {
+            "label": "Find a Store",
+            "url": "https://gullylabs.com/pages/find-a-store"
+          }
+        ]
+      },
+      {
+        "title": "Quick Links",
+        "links": [
+          {
+            "label": "Exchanges or Returns Policy",
+            "url": "https://gullylabs.com/policies/refund-policy"
+          },
+          {
+            "label": "Our Story",
+            "url": "https://gullylabs.com/pages/our-story"
+          },
+          {
+            "label": "Shipping Policy",
+            "url": "https://gullylabs.com/policies/shipping-policy"
+          },
+          {
+            "label": "Terms & Services",
+            "url": "https://gullylabs.com/policies/terms-of-service"
+          },
+          {
+            "label": "Privacy Policy",
+            "url": "https://gullylabs.com/policies/privacy-policy"
+          },
+          {
+            "label": "Careers",
+            "url": "https://binary.so/iY1UCY4"
+          },
+          {
+            "label": "Apply for Exchange/Return",
+            "url": "https://gullylabs.clickpost.in/en/returns"
+          }
+        ]
+      }
+    ]
+  }
+}
