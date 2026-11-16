@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Gully Labs — Sneakers Made in India</title>
+  <meta name="description" content="Handcrafted sneakers, slides and apparel inspired by the streets of India. Built with the community.">
+  <meta name="theme-color" content="#003bd0">
+  <link rel="icon" href="assets/images/Artboard_1.png">
+  <link rel="preconnect" href="https://gullylabs.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="data/catalog.json" as="fetch" crossorigin>
+  <link rel="preload" href="data/home.json" as="fetch" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script>
+    // Skip the intro after the first page of a session, and for people who prefer reduced motion.
+    (function () {
+      var root = document.documentElement, seen = false;
+      try { seen = !!sessionStorage.getItem('gl.intro'); } catch (e) {}
+      if (seen || matchMedia('(prefers-reduced-motion: reduce)').matches) root.classList.add('no-intro');
+      setTimeout(function () { root.classList.add('is-ready'); }, 5000); // never trap anyone behind the curtain
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="intro" aria-hidden="true">
+    <img class="intro__logo" src="assets/img/Frame_1171278318_1.webp" alt="" width="326" height="120">
+    <div class="intro__bar"><i></i></div>
+  </div>
+  <div class="progress" data-progress aria-hidden="true"></div>
+
+  <div class="announcement" aria-label="Announcements">
+    <div class="announcement__track" data-announcements></div>
+  </div>
+
+  <header class="header" data-header>
+    <div class="header__inner container">
+      <button type="button" class="icon-btn header__menu-btn" aria-label="Open menu" data-open="menu">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h18M3 12h12M3 17h18"/></svg>
+      </button>
+      <a class="header__logo" href="./" aria-label="Gully Labs home"><img data-logo alt="Gully Labs" width="164" height="46"></a>
+      <nav class="header__nav" aria-label="Main"><ul data-nav></ul></nav>
+      <div class="header__actions">
+        <button type="button" class="icon-btn" aria-label="Search" data-open="search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        </button>
+        <a class="icon-btn hide-mobile" href="shop.html?c=saved" aria-label="Saved items" data-saved-btn>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.7c0 5.6-7.5 10.2-7.5 10.2Z"/></svg>
+          <i class="icon-btn__dot"></i>
+        </a>
+        <button type="button" class="icon-btn icon-btn--bag" aria-label="Bag" data-open="bag" data-bag-btn>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 13H6L5 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+          <span class="icon-btn__count"><span data-bag-count></span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1" data-main>
+    <noscript><p class="container" style="padding:4rem 0">This shop needs JavaScript. Visit <a href="https://gullylabs.com">gullylabs.com</a>.</p></noscript>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <p class="footer__tagline" data-tagline></p>
+        <ul class="footer__social" data-social></ul>
+      </div>
+      <div class="footer__cols" data-footer-cols></div>
+    </div>
+    <div class="container footer__mark"><img data-logo-light alt="Gully Labs" width="326" height="120" loading="lazy"></div>
+    <div class="container footer__bottom">
+      <p>© <span data-year></span> Gully Labs</p>
+      <ul>
+        <li><a href="https://gullylabs.com/policies/refund-policy" target="_blank" rel="noopener">Refund policy</a></li>
+        <li><a href="https://gullylabs.com/policies/privacy-policy" target="_blank" rel="noopener">Privacy policy</a></li>
+        <li><a href="https://gullylabs.com/policies/terms-of-service" target="_blank" rel="noopener">Terms of service</a></li>
+        <li><a href="https://gullylabs.com/policies/contact-information" target="_blank" rel="noopener">Contact</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Menu -->
+  <div class="layer layer--left" data-layer="menu" hidden>
+    <div class="layer__scrim" data-close></div>
+    <div class="layer__panel menu" role="dialog" aria-modal="true" aria-label="Menu" data-layer-panel>
+      <div class="layer__head">
+        <img data-logo alt="Gully Labs" width="164" height="46">
+        <button type="button" class="icon-btn" aria-label="Close menu" data-close><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      </div>
+      <ul class="menu__nav" data-menu-nav></ul>
+      <ul class="menu__more" data-menu-more></ul>
+      <ul class="menu__social" data-social></ul>
+    </div>
+  </div>
+
+  <!-- Bag -->
+  <div class="layer layer--right" data-layer="bag" hidden data-bag>
+    <div class="layer__scrim" data-close></div>
+    <div class="layer__panel bag" role="dialog" aria-modal="true" aria-label="Bag" data-layer-panel>
+      <div class="layer__head">
+        <p class="layer__title" data-bag-title>Bag</p>
+        <button type="button" class="icon-btn" aria-label="Close bag" data-close data-autofocus><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      </div>
+      <div class="bag__body" data-bag-body></div>
+      <div class="bag__foot" data-bag-foot hidden>
+        <div class="bag__total"><span>Subtotal</span><span class="bag__sum"><span data-bag-subtotal></span></span></div>
+        <p class="bag__note">Shipping and offers are worked out at checkout, on gullylabs.com.</p>
+        <a class="btn btn--primary btn--xl btn--block" data-checkout href="https://gullylabs.com/cart">
+          <span class="btn__label">Checkout</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <button type="button" class="link-btn bag__continue" data-close>Continue shopping</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <div class="layer layer--left" data-layer="filters" hidden>
+    <div class="layer__scrim" data-close></div>
+    <div class="layer__panel filters" role="dialog" aria-modal="true" aria-label="Filters" data-layer-panel>
+      <div class="layer__head">
+        <p class="layer__title">Filters</p>
+        <button type="button" class="icon-btn" aria-label="Close filters" data-close data-autofocus><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      </div>
+      <div class="filters__body" data-filters-body></div>
+      <div class="filters__foot">
+        <button type="button" class="btn btn--outline" data-filters-clear><span class="btn__label">Clear all</span></button>
+        <button type="button" class="btn btn--primary" data-filters-apply><span class="btn__label">Show products</span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search -->
+  <div class="layer layer--top" data-layer="search" hidden>
+    <div class="layer__scrim" data-close></div>
+    <div class="layer__panel search" role="dialog" aria-modal="true" aria-label="Search" data-layer-panel>
+      <div class="container">
+        <form class="search__form" data-search-form role="search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input type="search" data-search-input data-autofocus placeholder="Search sneakers, slides, apparel" aria-label="Search products" autocomplete="off" enterkeyhint="search">
+          <button type="button" class="icon-btn" aria-label="Close search" data-close><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+        </form>
+        <div class="search__results" data-search-results></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="layer layer--fade lightbox" data-layer="lightbox" hidden role="dialog" aria-modal="true" aria-label="Product images" data-layer-panel>
+    <div class="lightbox__top">
+      <span class="lightbox__count" data-lightbox-n></span>
+      <button type="button" class="icon-btn" aria-label="Close images" data-close data-autofocus><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+    <div class="lightbox__stage" data-lightbox-stage></div>
+    <button type="button" class="round-btn lightbox__prev" data-lightbox-prev aria-label="Previous image"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+    <button type="button" class="round-btn lightbox__next" data-lightbox-next aria-label="Next image"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+    <div class="lightbox__thumbs" data-lightbox-thumbs></div>
+  </div>
+
+  <script src="js/app.js" type="module"></script>
+</body>
+</html>

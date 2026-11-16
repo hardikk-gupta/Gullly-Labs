@@ -1,25 +1,24 @@
-// Gully Labs homepage — renders every section from data/home.json.
-// Edit content in the JSON; edit look & motion in css/styles.css and below.
+// Gully Labs shop — boot, page chrome, client-side routing with view transitions, search.
+// Pages are real URLs (index.html, shop.html, product.html) that all load this app, so links work with or without JS routing.
 
-const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+import { $, $$, esc, money, ICON, loadCatalog, catalog, localUrl, linkAttrs, shopUrl, productUrl, picture, saved, reducedMotion, product, genderLabel } from './lib.js';
+import { initReveal, initSplit, initRails, initPointerFx, initRipple, watchImages, initSegments } from './motion.js';
+import { initCards, initLayers, openLayer, closeLayer, layerOpen } from './components.js';
+import { initBag } from './cart.js';
+import { homeView } from './home.js';
+import { plpView, searchProducts } from './plp.js';
+import { pdpView } from './pdp.js';
 
-const esc = (s = '') =>
-  String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-const $ = (sel, root = document) => root.querySelector(sel);
-const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
-const price = (p) => (p || '').replace(/\.00$/, '');
-
-const ICONS = {
-  prev: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>',
-  next: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>',
-  arrow: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
-  star: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0l1.9 5.8H16l-4.9 3.6 1.9 5.8L8 11.6l-4.9 3.6 1.9-5.8L0 5.8h6.1z"/></svg>',
-  globe: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg>',
-  bolt: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>',
-  swap: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h13l-4-4M17 17H4l4 4"/></svg>',
-  cash: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/></svg>',
-};
-const SOCIAL_ICONS = {
+const NAV = [
+  { label: 'New', c: 'new-drops' },
+  { label: 'Men', c: 'men' },
+  { label: 'Women', c: 'women' },
+  { label: 'Sneakers', c: 'all-shoe' },
+  { label: 'Slides', c: 'slides' },
+  { label: 'Apparel', c: 'apparel' },
+  { label: 'Bestsellers', c: 'best-sellers' },
+];
+const SOCIAL = {
   facebook: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H8v4h2v8h4v-8h3l1-4h-4V8z"/></svg>',
   x: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4l16 16M20 4 4 20"/></svg>',
   instagram: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>',
@@ -27,358 +26,252 @@ const SOCIAL_ICONS = {
 };
 const socialKey = (label) => (/twitter|^x/i.test(label) ? 'x' : label.toLowerCase().split(' ')[0]);
 
-/* ---------- section renderers ---------- */
-
-function banner(s) {
-  return `
-  <section class="banner ${s.hero ? 'banner--hero' : ''}" data-reveal>
-    <a class="banner__link" href="${esc(s.url)}" aria-label="${esc(s.alt || 'Shop the collection')}">
-      <picture>
-        <source media="(max-width: 767px)" srcset="${esc(s.mobile)}">
-        <img src="${esc(s.desktop)}" alt="${esc(s.alt)}" ${s.hero ? 'fetchpriority="high"' : 'loading="lazy"'} data-parallax>
-      </picture>
-    </a>
-  </section>`;
-}
-
-function productCard(p) {
-  const [img1, img2] = p.images;
-  const badges = p.badges.map((b) => `<span class="badge ${/new/i.test(b) ? 'badge--new' : ''}">${esc(b)}</span>`).join('');
-  const sale = p.compareAt ? `<s class="card__compare">${esc(price(p.compareAt))}</s>` : '';
-  const rating = p.rating
-    ? `<span class="card__rating" title="${p.rating.count} reviews">${ICONS.star}${p.rating.score.toFixed(1)}<span class="hide-mobile"> · ${p.rating.count}</span></span>`
-    : '';
-  const sizes = p.sizes.length
-    ? `<div class="card__sizes">${p.sizes.map((s) => `<a href="${esc(p.url)}">${esc(s.replace('UK ', ''))}</a>`).join('')}</div>`
-    : '';
-  return `
-  <article class="card" data-reveal>
-    <div class="card__media">
-      <a href="${esc(p.url)}" tabindex="-1" aria-hidden="true">
-        <img class="card__img" src="${esc(img1)}" alt="" loading="lazy">
-        ${img2 ? `<img class="card__img card__img--alt" src="${esc(img2)}" alt="" loading="lazy">` : ''}
-      </a>
-      <div class="card__badges">${badges}</div>
-      ${rating}
-      ${sizes}
-    </div>
-    <div class="card__info">
-      <a class="card__title" href="${esc(p.url)}">${esc(p.title)}</a>
-      <span class="card__price">${sale}<span class="${p.compareAt ? 'is-sale' : ''}">${esc(price(p.price))}</span></span>
-    </div>
-  </article>`;
-}
-
-function railControls() {
-  return `<div class="rail-controls">
-      <button class="round-btn" data-rail-prev aria-label="Previous">${ICONS.prev}</button>
-      <button class="round-btn" data-rail-next aria-label="Next">${ICONS.next}</button>
-    </div>`;
-}
-
-function products(s) {
-  const tabs = s.tabs
-    ? `<div class="tabs" role="tablist">${s.tabs
-        .map((t, i) =>
-          i === 0
-            ? `<span class="tab is-active" role="tab" aria-selected="true">${esc(t)}</span>`
-            : `<a class="tab" href="https://gullylabs.com/collections/${t.toLowerCase() === 'apparel' ? 'apparel' : t.toLowerCase() === 'slides' ? 'slides' : 'all-accessories'}">${esc(t)}</a>`
-        )
-        .join('')}</div>`
-    : '';
-  return `
-  <section class="section" data-rail-root>
-    <div class="container section__head">
-      <div><h2 class="section__title" data-split>${esc(s.title)}</h2>${tabs}</div>
-      ${railControls()}
-    </div>
-    <div class="rail" data-rail>${s.products.map(productCard).join('')}</div>
-    ${s.viewAll ? `<div class="container section__foot"><a class="btn btn--outline" href="${esc(s.viewAll)}">View all ${ICONS.arrow}</a></div>` : ''}
-  </section>`;
-}
-
-function collections(s) {
-  const grid = s.items.length <= 4;
-  return `
-  <section class="section" data-rail-root>
-    <div class="container section__head">
-      <h2 class="section__title section__title--caps" data-split>${esc(s.title)}</h2>
-      ${grid ? '' : railControls()}
-    </div>
-    <div class="${grid ? 'container coll-grid' : 'rail rail--wide'}" ${grid ? '' : 'data-rail'}>
-      ${s.items
-        .map(
-          (c) => `
-        <a class="coll" href="${esc(c.url)}" data-reveal>
-          <img src="${esc(c.image)}" alt="" loading="lazy">
-          <span class="coll__shade"></span>
-          <span class="coll__text">
-            <span class="coll__title">${esc(c.title)}${c.count ? `<sup>${c.count}</sup>` : ''}</span>
-            ${c.subtitle ? `<span class="coll__sub">${esc(c.subtitle)}</span>` : ''}
-          </span>
-          <span class="coll__arrow">${ICONS.arrow}</span>
-        </a>`
-        )
-        .join('')}
-    </div>
-  </section>`;
-}
-
-function lookbook(s) {
-  return `
-  <section class="section" data-rail-root>
-    <div class="container section__head">
-      <h2 class="section__title" data-split>${esc(s.title)}</h2>
-      ${railControls()}
-    </div>
-    <div class="rail rail--looks" data-rail>
-      ${s.looks
-        .map(
-          (l) => `
-        <figure class="look" data-reveal>
-          <img class="look__img" src="${esc(l.image)}" alt="" loading="lazy">
-          <figcaption class="look__products">
-            ${l.products
-              .map(
-                (p) => `
-              <a class="look__item" href="${esc(p.url)}">
-                <img src="${esc(p.image)}" alt="" loading="lazy">
-                <span><span class="look__name">${esc(p.title)}</span>${p.price ? `<span class="look__price">${esc(price(p.price))}</span>` : ''}</span>
-              </a>`
-              )
-              .join('')}
-          </figcaption>
-        </figure>`
-        )
-        .join('')}
-    </div>
-  </section>`;
-}
-
-function testimonials(s) {
-  return `
-  <section class="section testimonials" data-testimonials>
-    <div class="container">
-      <div class="testimonials__stage" aria-live="polite">
-        ${s.items
-          .map(
-            (t, i) => `
-          <blockquote class="quote ${i === 0 ? 'is-active' : ''}">
-            <p>“${esc(t.quote)}”</p>
-            <cite>— ${esc(t.author)}</cite>
-          </blockquote>`
-          )
-          .join('')}
-      </div>
-      <div class="dots" role="tablist">
-        ${s.items.map((_, i) => `<button class="dot ${i === 0 ? 'is-active' : ''}" aria-label="Review ${i + 1}" data-dot="${i}"></button>`).join('')}
-      </div>
-    </div>
-  </section>`;
-}
-
-function features(s) {
-  const icons = [ICONS.globe, ICONS.bolt, ICONS.swap, ICONS.cash];
-  return `
-  <section class="features">
-    <div class="container features__grid">
-      ${s.items
-        .map(
-          (f, i) => `
-        <div class="feature" data-reveal>
-          <span class="feature__icon">${icons[i % icons.length]}</span>
-          <div><p class="feature__title">${esc(f.title)}</p><p class="feature__text">${esc(f.text)}</p></div>
-        </div>`
-        )
-        .join('')}
-    </div>
-  </section>`;
-}
-
-const RENDERERS = { banner, products, collections, lookbook, testimonials, features };
+let home;
+let view = null;
+const main = $('[data-main]');
 
 /* ---------- chrome ---------- */
 
-function renderChrome(d) {
-  const ann = [...d.announcements, ...d.announcements];
-  const items = ann.map((a) => `<a href="${esc(a.url)}">${esc(a.text)}</a><span aria-hidden="true">●</span>`).join('');
+function renderChrome() {
+  const ann = [...home.announcements, ...home.announcements, ...home.announcements];
+  const items = ann.map((a) => `<a ${linkAttrs(localUrl(a.url))}>${esc(a.text.replace(/^✨\s*/, ''))}</a><i aria-hidden="true">✦</i>`).join('');
   $('[data-announcements]').innerHTML = `<div class="announcement__group">${items}</div><div class="announcement__group" aria-hidden="true">${items}</div>`;
 
-  $('[data-logo]').src = d.brand.logo;
-  $('[data-logo-footer]').src = d.brand.logoFooter;
-  $('[data-tagline]').textContent = d.brand.tagline;
+  $$('[data-logo]').forEach((img) => (img.src = home.brand.logo));
+  $$('[data-logo-light]').forEach((img) => (img.src = home.brand.logoFooter));
+  $('[data-tagline]').textContent = home.brand.tagline;
   $('[data-year]').textContent = new Date().getFullYear();
 
-  const navHtml = d.nav.map((n) => `<li><a href="${esc(n.url)}">${esc(n.label)}</a></li>`).join('');
-  $('[data-nav]').innerHTML = navHtml;
-  $('[data-drawer-nav]').innerHTML = navHtml;
+  const story = home.nav.filter((n) => /story|store/i.test(n.label));
+  $('[data-nav]').innerHTML = NAV.map((n) => `<li><a href="${shopUrl(n.c)}" data-nav-c="${n.c}"><span data-text="${esc(n.label)}">${esc(n.label)}</span></a></li>`).join('');
+  $('[data-menu-nav]').innerHTML = NAV.map((n, i) => `<li style="--i:${i}"><a href="${shopUrl(n.c)}"><span>${esc(n.label)}</span><sup>${catalog.byCollection.get(n.c)?.p.length || ''}</sup></a></li>`).join('');
+  $('[data-menu-more]').innerHTML =
+    `<li><a href="${shopUrl('saved')}">Saved items</a></li>` +
+    story.map((n) => `<li><a ${linkAttrs(n.url)}>${esc(n.label)}</a></li>`).join('');
 
-  const social = d.social
-    .map((s) => `<li><a href="${esc(s.url)}" aria-label="${esc(s.label)}" target="_blank" rel="noopener">${SOCIAL_ICONS[socialKey(s.label)] || esc(s.label)}</a></li>`)
-    .join('');
-  $('[data-social]').innerHTML = social;
-  $('[data-drawer-social]').innerHTML = social;
+  const social = home.social.map((s) => `<li><a href="${esc(s.url)}" aria-label="${esc(s.label)}" target="_blank" rel="noopener">${SOCIAL[socialKey(s.label)] || esc(s.label)}</a></li>`).join('');
+  $$('[data-social]').forEach((el) => (el.innerHTML = social));
 
-  $('[data-footer-cols]').innerHTML = d.footer.columns
-    .map(
-      (c) => `<div><p class="footer__heading">${esc(c.title)}</p><ul>${c.links
-        .map((l) => `<li><a href="${esc(l.url)}">${esc(l.label)}</a></li>`)
-        .join('')}</ul></div>`
-    )
+  $('[data-footer-cols]').innerHTML = home.footer.columns
+    .map((c) => `<div><p class="footer__heading">${esc(c.title)}</p><ul>${c.links.map((l) => `<li><a ${linkAttrs(localUrl(l.url))}>${esc(l.label)}</a></li>`).join('')}</ul></div>`)
     .join('');
+
+  const syncSaved = () => $('[data-saved-btn]').classList.toggle('has-items', saved.get().length > 0);
+  saved.subscribe(syncSaved);
+  syncSaved();
 }
-
-/* ---------- behaviour ---------- */
 
 function initHeader() {
   const header = $('[data-header]');
   let lastY = window.scrollY;
-  window.addEventListener(
-    'scroll',
-    () => {
-      const y = window.scrollY;
-      header.classList.toggle('is-scrolled', y > 10);
-      header.classList.toggle('is-hidden', y > 300 && y > lastY && !document.body.classList.contains('menu-open'));
-      lastY = y;
-    },
-    { passive: true }
-  );
-
-  const drawer = $('[data-drawer]');
-  const openBtn = $('[data-menu-open]');
-  const setOpen = (open) => {
-    drawer.hidden = !open;
-    document.body.classList.toggle('menu-open', open);
-    openBtn.setAttribute('aria-expanded', String(open));
-    if (open) $('.drawer__close', drawer).focus();
-    else openBtn.focus();
-  };
-  openBtn.addEventListener('click', () => setOpen(true));
-  $$('[data-menu-close]', drawer).forEach((el) => el.addEventListener('click', () => setOpen(false)));
-  document.addEventListener('keydown', (e) => e.key === 'Escape' && !drawer.hidden && setOpen(false));
-}
-
-function initRails() {
-  $$('[data-rail-root]').forEach((root) => {
-    const rail = $('[data-rail]', root);
-    if (!rail) return;
-    const prev = $('[data-rail-prev]', root);
-    const next = $('[data-rail-next]', root);
-    const step = () => (rail.firstElementChild?.getBoundingClientRect().width || 300) * 2;
-    const update = () => {
-      prev.disabled = rail.scrollLeft < 4;
-      next.disabled = rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 4;
-    };
-    prev.addEventListener('click', () => rail.scrollBy({ left: -step(), behavior: 'smooth' }));
-    next.addEventListener('click', () => rail.scrollBy({ left: step(), behavior: 'smooth' }));
-    rail.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
-    update();
-
-    // drag to scroll with a mouse
-    let down = false, startX = 0, startLeft = 0, moved = false;
-    rail.addEventListener('pointerdown', (e) => {
-      if (e.pointerType !== 'mouse') return;
-      down = true; moved = false; startX = e.clientX; startLeft = rail.scrollLeft;
-      rail.classList.add('is-dragging');
-    });
-    window.addEventListener('pointermove', (e) => {
-      if (!down) return;
-      const dx = e.clientX - startX;
-      if (Math.abs(dx) > 5) moved = true;
-      rail.scrollLeft = startLeft - dx;
-    });
-    window.addEventListener('pointerup', () => { down = false; rail.classList.remove('is-dragging'); });
-    rail.addEventListener('click', (e) => { if (moved) { e.preventDefault(); e.stopPropagation(); } }, true);
-    rail.addEventListener('dragstart', (e) => e.preventDefault());
-  });
-}
-
-function initTestimonials() {
-  const root = $('[data-testimonials]');
-  if (!root) return;
-  const quotes = $$('.quote', root);
-  const dots = $$('.dot', root);
-  let i = 0, timer;
-  const show = (n) => {
-    i = (n + quotes.length) % quotes.length;
-    quotes.forEach((q, k) => q.classList.toggle('is-active', k === i));
-    dots.forEach((d, k) => { d.classList.toggle('is-active', k === i); d.setAttribute('aria-selected', String(k === i)); });
-  };
-  const play = () => { if (!reducedMotion) timer = setInterval(() => show(i + 1), 5000); };
-  dots.forEach((d) => d.addEventListener('click', () => { clearInterval(timer); show(+d.dataset.dot); play(); }));
-  root.addEventListener('mouseenter', () => clearInterval(timer));
-  root.addEventListener('mouseleave', play);
-  play();
-}
-
-function initReveal() {
-  const els = $$('[data-reveal]');
-  if (!document.documentElement.classList.contains('js-reveal')) return;
-  const io = new IntersectionObserver(
-    (entries) =>
-      entries.forEach((e) => {
-        if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
-      }),
-    { rootMargin: '0px 0px -8% 0px' }
-  );
-  // stagger siblings inside the same rail/grid
-  els.forEach((el) => {
-    const idx = [...el.parentElement.children].indexOf(el);
-    el.style.setProperty('--d', `${Math.min(idx, 6) * 70}ms`);
-    io.observe(el);
-  });
-}
-
-function initSplitTitles() {
-  if (reducedMotion) return;
-  $$('[data-split]').forEach((h) => {
-    const words = h.textContent.trim().split(/\s+/);
-    h.setAttribute('aria-label', h.textContent.trim());
-    h.innerHTML = words
-      .map((w, i) => `<span class="split" aria-hidden="true"><span style="--i:${i}">${esc(w)}</span></span>`)
-      .join(' ');
-    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { h.classList.add('is-in'); io.disconnect(); } });
-    io.observe(h);
-  });
-}
-
-function initParallax() {
-  if (reducedMotion) return;
-  const imgs = $$('[data-parallax]');
   let ticking = false;
-  const tick = () => {
-    const vh = window.innerHeight;
-    imgs.forEach((img) => {
-      const r = img.parentElement.getBoundingClientRect();
-      if (r.bottom < 0 || r.top > vh) return;
-      const p = (r.top + r.height / 2 - vh / 2) / vh; // -1..1
-      // banners have copy baked into the artwork, so keep the zoom subtle enough not to crop it
-      img.style.transform = `translate3d(0, ${(p * -1.6).toFixed(2)}%, 0) scale(1.04)`;
-    });
+  const update = () => {
+    const y = window.scrollY;
+    header.classList.toggle('is-scrolled', y > 40);
+    const hide = y > 400 && y > lastY + 4 && !layerOpen();
+    if (hide) header.classList.add('is-hidden');
+    else if (y < lastY - 4 || y <= 400) header.classList.remove('is-hidden');
+    document.documentElement.classList.toggle('header-hidden', header.classList.contains('is-hidden'));
+    lastY = y;
     ticking = false;
   };
-  window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(tick); } }, { passive: true });
-  tick();
+  window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+}
+
+/* ---------- search ---------- */
+
+const POPULAR = [['New drops', 'new-drops'], ['Bestsellers', 'best-sellers'], ['Baaz', 'baaz-y2k'], ['Kara', 'kara'], ['Slides', 'slides'], ['Under ₹5,000', 'shoe-under-5000']];
+
+function initSearch() {
+  const layer = $('[data-layer="search"]');
+  const input = $('[data-search-input]', layer);
+  const out = $('[data-search-results]', layer);
+  const form = $('[data-search-form]', layer);
+
+  const idle = () => `
+    <p class="search__label">Popular</p>
+    <div class="search__chips">${POPULAR.filter(([, c]) => catalog.byCollection.has(c)).map(([l, c], i) => `<a class="chip" style="--i:${i}" href="${shopUrl(c)}">${esc(l)}</a>`).join('')}</div>`;
+
+  const render = () => {
+    const q = input.value.trim();
+    if (q.length < 2) { out.innerHTML = idle(); return; }
+    const hits = searchProducts(q);
+    const cols = catalog.collections.filter((c) => c.t.toLowerCase().includes(q.toLowerCase())).slice(0, 4);
+    if (!hits.length && !cols.length) {
+      out.innerHTML = `<p class="search__none">Nothing for “${esc(q)}”. Try “Baaz”, “shacket” or “slides”.</p>${idle()}`;
+      return;
+    }
+    out.innerHTML = `
+      ${cols.length ? `<p class="search__label">Collections</p><div class="search__chips">${cols.map((c, i) => `<a class="chip" style="--i:${i}" href="${shopUrl(c.h)}">${esc(c.t)}</a>`).join('')}</div>` : ''}
+      ${hits.length ? `
+      <p class="search__label">Products <span>${hits.length}</span></p>
+      <div class="search__grid">
+        ${hits.slice(0, 8).map((p, i) => `
+          <a class="hit" style="--i:${i}" href="${productUrl(p.h)}">
+            <span class="hit__media media">${picture(p.imgs[0], { sizes: '(max-width: 767px) 30vw, 160px' })}</span>
+            <span class="hit__copy"><span class="hit__sub">${esc([p.line, genderLabel(p.g)].filter(Boolean).join(' · '))}</span><span class="hit__name">${esc(p.name)}</span><span class="hit__price">${money(p.price)}</span></span>
+          </a>`).join('')}
+      </div>
+      ${hits.length > 8 ? `<a class="link-arrow search__all" href="${shopUrl('', { q })}"><span>See all ${hits.length} results</span>${ICON.arrow}</a>` : ''}` : ''}`;
+    watchImages(out);
+  };
+
+  input.addEventListener('input', render);
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const q = input.value.trim();
+    if (q) navigate(new URL(shopUrl('', { q }), location.href));
+  });
+  layer.addEventListener('layer:open', () => { render(); input.select(); });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === '/' && !/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName) && !layerOpen()) { e.preventDefault(); openLayer('search'); }
+  });
+}
+
+/* ---------- router ---------- */
+
+const routeOf = (url) => {
+  const name = url.pathname.split('/').pop().replace(/\.html$/, '');
+  if (name === 'shop') return 'plp';
+  if (name === 'product') return 'pdp';
+  if (name === '' || name === 'index') return 'home';
+  return null;
+};
+
+const uid = () => Math.random().toString(36).slice(2, 10);
+const memory = (() => { try { return JSON.parse(sessionStorage.getItem('gl.scroll')) || {}; } catch { return {}; } })();
+let currentKey = null; // the history entry the visible page belongs to (history.state has already moved on by popstate time)
+const remember = () => {
+  if (!currentKey) return;
+  memory[currentKey] = { y: window.scrollY, ...(view?.snapshot?.() || {}) };
+  try { sessionStorage.setItem('gl.scroll', JSON.stringify(memory)); } catch { /* ignore */ }
+};
+
+function build(url, restore) {
+  const route = routeOf(url);
+  if (route === 'plp') return plpView(url.searchParams, restore);
+  if (route === 'pdp') return pdpView(url.searchParams, home);
+  return homeView(home);
+}
+
+function show(url, restore) {
+  view?.destroy?.();
+  const next = build(url, restore);
+  document.title = next.title;
+  main.innerHTML = next.html;
+  main.dataset.route = routeOf(url);
+  const mounted = next.mount(main, restore);
+  view = typeof mounted === 'function' ? { destroy: mounted } : mounted || {};
+  initSplit(main);
+  initRails(main);
+  initSegments(main);
+  initReveal(main);
+  watchImages(main);
+
+  const c = routeOf(url) === 'plp' ? url.searchParams.get('c') : '';
+  $$('[data-nav-c]').forEach((a) => a.classList.toggle('is-current', a.dataset.navC === c));
+}
+
+let navToken = 0;
+async function navigate(url, { mode = 'push', source = null } = {}) {
+  const token = ++navToken;
+  const fromRoute = main.dataset.route;
+  const toRoute = routeOf(url);
+  const fromHandle = fromRoute === 'pdp' ? new URLSearchParams(location.search).get('h') : null;
+
+  remember();
+  closeLayer(true);
+  if (mode === 'push') history.pushState({ k: uid() }, '', url);
+  else if (mode === 'replace') history.replaceState(history.state, '', url);
+  currentKey = history.state?.k || currentKey;
+  const restore = mode === 'pop' ? memory[currentKey] : null;
+
+  // Shared element: the tapped card's image grows into the product hero (and shrinks back on return).
+  const card = source?.closest?.('[data-card]');
+  let named = null;
+  if (toRoute === 'pdp' && card && fromRoute !== 'pdp') {
+    named = $('.card__img.is-on', card) || $('.card__img', card);
+    if (named) named.style.viewTransitionName = 'product-hero';
+  }
+
+  const swap = () => {
+    show(url, restore);
+    if (mode === 'replace') return;
+    window.scrollTo(0, restore?.y || 0);
+    if (mode === 'pop' && fromHandle && toRoute !== 'pdp') {
+      const back = $$(`[data-card][data-h="${CSS.escape(fromHandle)}"] .card__img`, main).find((img) => { const r = img.getBoundingClientRect(); return r.bottom > 0 && r.top < innerHeight; });
+      if (back) { back.style.viewTransitionName = 'product-hero'; named = back; }
+    }
+  };
+
+  const bar = $('[data-progress]');
+  bar.classList.remove('is-on'); void bar.offsetWidth; bar.classList.add('is-on');
+
+  if (document.startViewTransition && !reducedMotion && mode !== 'replace') {
+    document.documentElement.dataset.nav = mode === 'pop' ? 'back' : 'forward';
+    const t = document.startViewTransition(swap);
+    try { await t.finished; } catch { /* skipped */ }
+    if (named) named.style.viewTransitionName = '';
+    if (token === navToken) delete document.documentElement.dataset.nav;
+  } else {
+    if (named) named.style.viewTransitionName = '';
+    swap();
+  }
+  if (mode !== 'replace') main.focus({ preventScroll: true });
+}
+
+function initRouter() {
+  history.scrollRestoration = 'manual';
+  if (!history.state?.k) history.replaceState({ k: uid() }, '', location.href);
+  currentKey = history.state.k;
+
+  document.addEventListener('click', (e) => {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    const a = e.target.closest('a[href]');
+    if (!a || a.target || a.hasAttribute('download')) return;
+    const url = new URL(a.href, location.href);
+    if (url.origin !== location.origin || routeOf(url) === null) return;
+    e.preventDefault();
+    if (url.href === location.href) { closeLayer(); window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' }); return; }
+    navigate(url, { mode: a.hasAttribute('data-replace') ? 'replace' : 'push', source: a });
+  });
+
+  window.addEventListener('popstate', () => navigate(new URL(location.href), { mode: 'pop' }));
+  window.addEventListener('pagehide', remember);
 }
 
 /* ---------- boot ---------- */
 
 async function boot() {
-  const res = await fetch('data/home.json');
-  const data = await res.json();
-  renderChrome(data);
-  if (!reducedMotion && 'IntersectionObserver' in window) document.documentElement.classList.add('js-reveal');
-  $('[data-sections]').innerHTML = data.sections.map((s) => (RENDERERS[s.type] ? RENDERERS[s.type](s) : '')).join('');
+  const started = performance.now();
+  home = await loadCatalog();
+  renderChrome();
+  initLayers();
+  initCards();
+  initBag();
   initHeader();
-  initRails();
-  initTestimonials();
-  initSplitTitles();
-  initReveal();
-  initParallax();
+  initSearch();
+  initRouter();
+  initPointerFx();
+  initRipple();
+
+  const restore = memory[history.state?.k];
+  show(new URL(location.href), restore);
+  if (restore?.y) window.scrollTo(0, restore.y);
+
+  // Let the intro read for a beat on the first visit of a session, then lift the curtain.
+  const root = document.documentElement;
+  const hasIntro = !root.classList.contains('no-intro');
+  const wait = hasIntro ? Math.max(0, 900 - (performance.now() - started)) : 0;
+  setTimeout(() => {
+    root.classList.add('is-ready');
+    try { sessionStorage.setItem('gl.intro', '1'); } catch { /* ignore */ }
+    setTimeout(() => $('.intro')?.remove(), 1200);
+  }, wait);
 }
 
 boot().catch((err) => {
   console.error(err);
-  $('[data-sections]').innerHTML = '<p class="container" style="padding:4rem 0">Could not load content.</p>';
+  document.documentElement.classList.add('is-ready', 'no-intro');
+  main.innerHTML = '<div class="container empty empty--page"><p class="empty__title">Something went wrong loading the shop</p><p class="empty__text">Please refresh, or visit <a href="https://gullylabs.com">gullylabs.com</a>.</p></div>';
 });
