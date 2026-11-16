@@ -1,6 +1,7 @@
 // Home: campaign hero, live product rails, editorial banners, shop-the-look, collections, reviews.
 
-import { $, $$, esc, money, ICON, localUrl, linkAttrs, collectionProducts, collection, shopUrl, reducedMotion } from './lib.js';
+import { $, $$, esc, money, ICON, localUrl, linkAttrs, collectionProducts, collection, shopUrl, productUrl, imgUrl, genderLabel, reducedMotion } from './lib.js';
+import { can3d, heroLiquid, sneakerToken, productRing } from './three-fx.js';
 import { productCard, productRail, railControls } from './components.js';
 import { initSegments, moveIndicator, initReveal, watchImages, initParallax } from './motion.js';
 
@@ -154,16 +155,62 @@ function features(s) {
   </section>`;
 }
 
+function band3d() {
+  return `
+  <section class="band3d ${can3d ? 'has-3d' : ''}">
+    <div class="container"><div class="band3d__panel">
+      <div class="band3d__copy">
+        <p class="eyebrow" data-reveal>Sneakers made in India</p>
+        <h2 class="band3d__title" data-split>Inspired by the streets</h2>
+        <p class="band3d__text" data-reveal>Handcrafted sneakers, slides and apparel, built with the community.</p>
+        <a class="btn btn--primary" href="${shopUrl('all-shoe')}" data-reveal data-magnetic><span class="btn__label">Shop sneakers</span>${ICON.arrow}</a>
+      </div>
+      ${can3d ? '<canvas class="band3d__canvas" data-token aria-hidden="true"></canvas><p class="band3d__hint" aria-hidden="true">Drag to spin</p>' : ''}
+    </div></div>
+  </section>`;
+}
+
+const ringItems = () => collectionProducts('bestsellers-sneakers').filter((p) => p.inStock).slice(0, 10);
+
+function ring() {
+  const items = ringItems();
+  if (!can3d || items.length < 6) return '';
+  return `
+  <section class="section ring" data-ring>
+    <div class="container section__head">
+      <div>
+        <p class="eyebrow" data-reveal>Bestselling sneakers, in the round</p>
+        <h2 class="section__title" data-split>Spin the line-up</h2>
+      </div>
+      <div class="section__tools"><div class="rail-controls rail-controls--always">
+        <button type="button" class="round-btn" data-ring-prev aria-label="Previous sneaker">${ICON.prev}</button>
+        <button type="button" class="round-btn" data-ring-next aria-label="Next sneaker">${ICON.next}</button>
+      </div></div>
+    </div>
+    <div class="ring__stage"><canvas class="ring__canvas" data-ring-canvas data-cursor="Drag" aria-hidden="true"></canvas></div>
+    <div class="container ring__caption" aria-live="polite">
+      <p class="ring__sub" data-ring-sub></p>
+      <a class="ring__name" data-ring-link href="#"><span data-ring-name></span></a>
+      <p class="ring__price" data-ring-price></p>
+      <a class="btn btn--outline" data-ring-cta href="#"><span class="btn__label">View product</span>${ICON.arrow}</a>
+    </div>
+  </section>`;
+}
+
 const RENDER = { products, collections, lookbook, testimonials, features };
 
 export function homeView(home) {
   let first = true;
+  let rails = 0;
   const html = home.sections.map((s) => {
     if (s.type === 'banner') {
       if (first) { first = false; return hero(s) + ticker(['Sneakers made in India', 'Handcrafted', 'Inspired by the streets', 'Built with the community']); }
       return banner(s);
     }
-    return RENDER[s.type]?.(s) || '';
+    const out = RENDER[s.type]?.(s) || '';
+    if (s.type !== 'products') return out;
+    rails += 1;
+    return out + (rails === 1 ? band3d() : rails === 2 ? ring() : '');
   }).join('');
 
   return {
@@ -215,7 +262,38 @@ export function homeView(home) {
       }
 
       initSegments(root);
-      return () => { stopParallax(); clearInterval(timer); };
+
+      // 3D: each piece loads Three.js on demand and reports back a disposer
+      const disposers = [];
+      let alive = true;
+      const keep = (promise) => promise.then((d) => { const fn = typeof d === 'function' ? d : d?.dispose; if (alive) disposers.push(fn); else fn?.(); return d; }).catch((err) => console.warn('3D skipped:', err));
+      if (can3d) {
+        const heroLink = $('.hero__link', root);
+        if (heroLink) keep(heroLiquid(heroLink, $('img', heroLink)));
+        const token = $('[data-token]', root);
+        if (token) keep(sneakerToken(token));
+        const ringEl = $('[data-ring]', root);
+        if (ringEl) {
+          const items = ringItems().map((p) => ({ p, image: imgUrl(p.imgs[0], 540) }));
+          const link = $('[data-ring-link]', ringEl);
+          keep(productRing($('[data-ring-canvas]', ringEl), items, {
+            onFront: ({ p }) => {
+              $('[data-ring-sub]', ringEl).textContent = [p.line, genderLabel(p.g)].filter(Boolean).join(' · ');
+              $('[data-ring-name]', ringEl).textContent = p.name;
+              $('[data-ring-price]', ringEl).textContent = '₹' + p.price.toLocaleString('en-IN');
+              link.href = $('[data-ring-cta]', ringEl).href = productUrl(p.h);
+              const cap = $('.ring__caption', ringEl);
+              cap.classList.remove('is-swap'); void cap.offsetWidth; cap.classList.add('is-swap');
+            },
+            onOpen: () => link.click(),
+          })).then((api) => {
+            if (!api?.next) return;
+            $('[data-ring-prev]', ringEl).addEventListener('click', api.prev);
+            $('[data-ring-next]', ringEl).addEventListener('click', api.next);
+          });
+        }
+      }
+      return () => { alive = false; disposers.forEach((d) => d?.()); stopParallax(); clearInterval(timer); };
     },
   };
 }

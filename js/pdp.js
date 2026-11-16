@@ -7,6 +7,7 @@ import {
 import { badges, productRail, buyButton, playBuy, openLayer, closeLayer } from './components.js';
 import { flyToBag, toast, moveIndicator, initSegments, watchImages } from './motion.js';
 import { addToBag, openBag } from './cart.js';
+import { can3d, photoBox } from './three-fx.js';
 
 const CAT_COLLECTION = { footwear: 'all-shoe', slides: 'slides', apparel: 'apparel', accessories: 'all-accessories' };
 const LINE_COLLECTION = [
@@ -66,6 +67,7 @@ export function pdpView(params, home) {
     <div class="container pdp__layout">
       <div class="gallery" data-gallery>
         <div class="gallery__track" data-gallery-track>${gallery}</div>
+        ${can3d && p.imgs.length >= 4 ? `<button type="button" class="chip gallery__3d" data-box3d><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z"/><path d="m4 7.5 8 4.5 8-4.5M12 12v9"/></svg><span>3D view</span></button>` : ''}
         <div class="gallery__hud show-mobile" aria-hidden="true">
           <span class="gallery__count"><span data-gallery-n>1</span> / ${p.imgs.length}</span>
           <div class="gallery__bar"><i data-gallery-bar style="--n:${p.imgs.length}"></i></div>
@@ -310,12 +312,33 @@ export function pdpView(params, home) {
       stage.addEventListener('touchend', onTouchEnd);
       document.addEventListener('keydown', onBoxKey);
 
+      /* 3D photo box */
+      const boxLayer = $('[data-layer="box3d"]');
+      const boxStage = $('[data-box3d-stage]', boxLayer);
+      let disposeBox = null;
+      const closeBox = () => { disposeBox?.(); disposeBox = null; boxStage.innerHTML = ''; };
+      const onBox3d = async (e) => {
+        if (!e.target.closest('[data-box3d]')) return;
+        openLayer('box3d');
+        closeBox();
+        const canvas = document.createElement('canvas');
+        canvas.className = 'box3d__canvas';
+        canvas.setAttribute('aria-label', `${p.title}: product photos on a box you can turn`);
+        boxStage.append(canvas);
+        const d = await photoBox(canvas, p.imgs.slice(0, 6).map((f) => imgUrl(f, 720)));
+        if (canvas.isConnected) disposeBox = d; else d?.();
+      };
+      root.addEventListener('click', onBox3d);
+      boxLayer.addEventListener('layer:close', closeBox);
+
       initSegments(root);
       $$('[data-seg]', root).forEach(moveIndicator);
 
       return {
         destroy() {
           barIo.disconnect();
+          boxLayer.removeEventListener('layer:close', closeBox);
+          closeBox();
           document.documentElement.classList.remove('has-buybar');
           box.removeEventListener('click', onBoxClick);
           stage.removeEventListener('pointermove', pan);

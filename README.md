@@ -39,6 +39,8 @@ cp index.html shop.html && cp index.html product.html
 | `js/components.js` | Product card (hover scrub, quick add, save), rails, drawers, the buy button |
 | `js/cart.js` | Bag (kept in `localStorage`), drawer, checkout hand-off |
 | `js/motion.js` | Reveal, split headings, rail drag, sliding pills, fly-to-bag, toast, ripple, cursor label |
+| `js/three-fx.js` | The 3D pieces (Three.js): rippling hero, spinning sneaker, product ring, 3D photo box. Loaded on demand |
+| `js/vendor/three.module.min.js` | Three.js r170 (MIT), vendored so there is no CDN dependency |
 | `js/lib.js` | Helpers, catalogue access, image URLs, saved / recently viewed |
 | `data/catalog.json` | Products, variants, collections. Generated, don't hand-edit |
 | `data/home.json` | Home page content: banners, section order, looks, reviews, footer |
@@ -61,6 +63,8 @@ and `scripts/optimize_images.py`, as before.
 - The intro curtain plays once per browser session.
 - Hover-only behaviour (image scrub on cards, cursor label, magnetic button) is limited to mouse pointers; touch gets
   always-visible controls instead.
+- The 3D pieces only start where WebGL is available and reduced motion is off; they render only while on screen.
+  Without them the hero is the plain image, the sneaker band keeps its text and button, and the ring section is left out.
 - Route and grid animations use the View Transitions API and fall back to an instant swap where it is missing.
 
 ## Deploy on Vercel

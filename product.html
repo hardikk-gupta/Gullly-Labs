@@ -161,6 +161,15 @@
     <div class="lightbox__thumbs" data-lightbox-thumbs></div>
   </div>
 
+  <!-- 3D photo box -->
+  <div class="layer layer--fade box3d" data-layer="box3d" hidden role="dialog" aria-modal="true" aria-label="3D view" data-layer-panel>
+    <div class="lightbox__top">
+      <span class="lightbox__count">Drag to turn</span>
+      <button type="button" class="icon-btn" aria-label="Close 3D view" data-close data-autofocus><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+    <div class="box3d__stage" data-box3d-stage></div>
+  </div>
+
   <script src="js/app.js" type="module"></script>
 </body>
 </html>
